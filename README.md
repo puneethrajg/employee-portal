@@ -1,6 +1,4 @@
-Here's the README — copy this into a `README.md` file at the root of your project (the folder that contains both `empportal` and `emp-portal-frontend`):
-
-```markdown
+```
 # Emp Portal
 
 A full-stack Employee Management (CRUD) application — a Spring Boot REST API backend paired with a React frontend for adding, viewing, editing, and deleting employee records.
