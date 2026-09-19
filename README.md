@@ -1,4 +1,4 @@
-```
+
 # Emp Portal
 
 A full-stack Employee Management (CRUD) application — a Spring Boot REST API backend paired with a React frontend for adding, viewing, editing, and deleting employee records.
@@ -119,4 +119,3 @@ export DB_PASSWORD=yourpassword
 ## Author
 
 Puneeth — [github.com/puneethrajg](https://github.com/puneethrajg)
-```
