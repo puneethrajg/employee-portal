@@ -1,0 +1,772 @@
+:root {
+  --bg: #f4f7f6;
+  --surface: #ffffff;
+  --surface-soft: #f8faf9;
+
+  --ink: #17221d;
+  --ink-soft: #66736c;
+  --ink-muted: #8a958f;
+
+  --line: #e2e8e4;
+  --line-strong: #d4ddd8;
+
+  --teal: #236b5b;
+  --teal-hover: #1b574a;
+  --teal-soft: #e8f3ef;
+
+  --brick: #b54732;
+  --brick-hover: #963b29;
+  --brick-soft: #fbeceb;
+
+  --shadow-sm: 0 2px 8px rgba(23, 34, 29, 0.05);
+  --shadow-md: 0 10px 30px rgba(23, 34, 29, 0.10);
+  --shadow-lg: 0 20px 50px rgba(23, 34, 29, 0.16);
+
+  font-family:
+    'IBM Plex Sans',
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    sans-serif;
+
+  color-scheme: light;
+}
+
+/* =========================================================
+   GLOBAL
+   ========================================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background:
+    radial-gradient(
+      circle at top left,
+      rgba(35, 107, 91, 0.05),
+      transparent 35%
+    ),
+    var(--bg);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.mono {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.88em;
+}
+
+/* =========================================================
+   APP LAYOUT
+   ========================================================= */
+
+.app-shell {
+  width: min(1180px, 100%);
+  margin: 0 auto;
+  padding: 36px 28px 80px;
+}
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+
+  padding: 0 0 24px;
+  margin-bottom: 28px;
+
+  border-bottom: 1px solid var(--line-strong);
+}
+
+.app-header__eyebrow {
+  margin: 0 0 7px;
+
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+
+  color: var(--teal);
+}
+
+.app-header h1 {
+  margin: 0;
+
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  line-height: 1.1;
+  font-weight: 700;
+  letter-spacing: -0.035em;
+}
+
+/* =========================================================
+   MAIN CONTENT CARD
+   ========================================================= */
+
+.app-main {
+  background: var(--surface);
+
+  border: 1px solid var(--line);
+  border-radius: 12px;
+
+  overflow: hidden;
+
+  box-shadow: var(--shadow-sm);
+}
+
+/* =========================================================
+   TABLE
+   ========================================================= */
+
+.roster-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+
+  font-size: 0.94rem;
+}
+
+.roster-table th {
+  padding: 15px 18px;
+
+  text-align: left;
+
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+
+  color: var(--ink-soft);
+
+  background: var(--surface-soft);
+
+  border-bottom: 1px solid var(--line);
+}
+
+.roster-table td {
+  padding: 16px 18px;
+
+  color: var(--ink);
+
+  border-bottom: 1px solid var(--line);
+}
+
+.roster-table tbody tr {
+  transition:
+    background 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.roster-table tbody tr:hover {
+  background: #f9fbfa;
+}
+
+.roster-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* First column */
+
+.roster-table tbody td:first-child {
+  font-weight: 600;
+}
+
+/* =========================================================
+   ROW ACTIONS
+   ========================================================= */
+
+.row-actions {
+  text-align: right;
+  white-space: nowrap;
+}
+
+.link-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  background: transparent;
+  border: none;
+
+  color: var(--teal);
+
+  font-size: 0.84rem;
+  font-weight: 650;
+
+  cursor: pointer;
+
+  padding: 6px 9px;
+  border-radius: 6px;
+
+  transition:
+    background 0.15s ease,
+    color 0.15s ease;
+}
+
+.link-button:hover {
+  background: var(--teal-soft);
+  text-decoration: none;
+}
+
+.link-button:focus-visible {
+  outline: 2px solid var(--teal);
+  outline-offset: 2px;
+}
+
+.link-button--danger {
+  color: var(--brick);
+}
+
+.link-button--danger:hover {
+  background: var(--brick-soft);
+}
+
+/* =========================================================
+   TABLE STATES
+   ========================================================= */
+
+.table-status {
+  padding: 50px 20px;
+
+  text-align: center;
+
+  color: var(--ink-soft);
+  font-size: 0.92rem;
+}
+
+.empty-state {
+  padding: 70px 24px;
+
+  text-align: center;
+}
+
+.empty-state__title {
+  margin: 0 0 7px;
+
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.empty-state__body {
+  margin: 0;
+
+  color: var(--ink-soft);
+
+  font-size: 0.9rem;
+}
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 40px;
+
+  border: none;
+  border-radius: 7px;
+
+  padding: 10px 17px;
+
+  font-size: 0.88rem;
+  font-weight: 650;
+
+  cursor: pointer;
+
+  transition:
+    background 0.15s ease,
+    transform 0.1s ease,
+    box-shadow 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.button:active {
+  transform: translateY(1px);
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--teal);
+  outline-offset: 2px;
+}
+
+.button--primary {
+  background: var(--teal);
+  color: #ffffff;
+
+  box-shadow: 0 2px 5px rgba(35, 107, 91, 0.20);
+}
+
+.button--primary:hover {
+  background: var(--teal-hover);
+
+  box-shadow: 0 4px 10px rgba(35, 107, 91, 0.25);
+}
+
+.button--ghost {
+  background: var(--surface);
+
+  color: var(--ink);
+
+  border: 1px solid var(--line-strong);
+}
+
+.button--ghost:hover {
+  background: var(--surface-soft);
+  border-color: #c5d0ca;
+}
+
+.button--danger {
+  background: var(--brick);
+  color: #ffffff;
+
+  box-shadow: 0 2px 5px rgba(181, 71, 50, 0.18);
+}
+
+.button--danger:hover {
+  background: var(--brick-hover);
+
+  box-shadow: 0 4px 10px rgba(181, 71, 50, 0.22);
+}
+
+.button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* =========================================================
+   ERROR / STATUS BANNER
+   ========================================================= */
+
+.banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+
+  padding: 13px 18px;
+
+  border-bottom: 1px solid var(--line);
+}
+
+.banner p {
+  margin: 0;
+
+  font-size: 0.88rem;
+}
+
+.banner--error {
+  background: var(--brick-soft);
+  color: var(--brick-hover);
+}
+
+/* =========================================================
+   SLIDE-OVER PANEL
+   ========================================================= */
+
+.panel {
+  position: fixed;
+
+  top: 0;
+  right: 0;
+
+  z-index: 100;
+
+  width: min(440px, 100%);
+  height: 100dvh;
+
+  background: var(--surface);
+
+  border-left: 1px solid var(--line);
+
+  box-shadow: var(--shadow-lg);
+
+  display: flex;
+  flex-direction: column;
+
+  padding: 28px;
+
+  overflow-y: auto;
+
+  animation: slideIn 0.22s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* =========================================================
+   PANEL HEADER
+   ========================================================= */
+
+.panel__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 28px;
+}
+
+.panel__header h2 {
+  margin: 0;
+
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.icon-button {
+  width: 36px;
+  height: 36px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  background: transparent;
+
+  border: 1px solid transparent;
+  border-radius: 7px;
+
+  color: var(--ink-soft);
+
+  font-size: 1.35rem;
+  line-height: 1;
+
+  cursor: pointer;
+
+  transition:
+    background 0.15s ease,
+    color 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.icon-button:hover {
+  background: var(--surface-soft);
+  border-color: var(--line);
+  color: var(--ink);
+}
+
+.icon-button:focus-visible {
+  outline: 2px solid var(--teal);
+  outline-offset: 2px;
+}
+
+/* =========================================================
+   FORM
+   ========================================================= */
+
+.panel__form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+
+  font-size: 0.82rem;
+  font-weight: 600;
+
+  color: var(--ink-soft);
+}
+
+.field input {
+  width: 100%;
+
+  min-height: 42px;
+
+  padding: 10px 12px;
+
+  background: #ffffff;
+
+  border: 1px solid var(--line-strong);
+  border-radius: 7px;
+
+  color: var(--ink);
+
+  font-size: 0.92rem;
+
+  outline: none;
+
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.field input:hover {
+  border-color: #bdc9c2;
+}
+
+.field input:focus {
+  border-color: var(--teal);
+
+  box-shadow:
+    0 0 0 3px rgba(35, 107, 91, 0.10);
+}
+
+.field input::placeholder {
+  color: var(--ink-muted);
+}
+
+/* =========================================================
+   TWO-COLUMN FORM ROW
+   ========================================================= */
+
+.field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+/* =========================================================
+   FORM ERROR
+   ========================================================= */
+
+.form-error {
+  margin: 0;
+
+  padding: 10px 12px;
+
+  border-radius: 6px;
+
+  background: var(--brick-soft);
+
+  color: var(--brick);
+
+  font-size: 0.82rem;
+  line-height: 1.45;
+}
+
+/* =========================================================
+   FORM ACTIONS
+   ========================================================= */
+
+.panel__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+
+  margin-top: 10px;
+  padding-top: 20px;
+
+  border-top: 1px solid var(--line);
+}
+
+/* =========================================================
+   CONFIRMATION OVERLAY
+   ========================================================= */
+
+.overlay {
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 200;
+
+  background: rgba(23, 34, 29, 0.42);
+
+  backdrop-filter: blur(3px);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 24px;
+
+  animation: fadeIn 0.15s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* =========================================================
+   CONFIRMATION CARD
+   ========================================================= */
+
+.confirm-card {
+  width: min(400px, 100%);
+
+  background: var(--surface);
+
+  border: 1px solid var(--line);
+
+  border-radius: 12px;
+
+  padding: 28px;
+
+  box-shadow: var(--shadow-lg);
+
+  animation: dialogIn 0.18s ease-out;
+}
+
+@keyframes dialogIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.confirm-card__title {
+  margin: 0 0 8px;
+
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.confirm-card__body {
+  margin: 0 0 24px;
+
+  color: var(--ink-soft);
+
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+.confirm-card__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 768px) {
+  .app-shell {
+    padding: 28px 18px 60px;
+  }
+
+  .app-header {
+    align-items: flex-start;
+  }
+
+  .app-header h1 {
+    font-size: 1.8rem;
+  }
+
+  .roster-table th,
+  .roster-table td {
+    padding: 13px 14px;
+  }
+}
+
+@media (max-width: 640px) {
+  .app-shell {
+    padding: 22px 12px 50px;
+  }
+
+  .app-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+
+    padding-bottom: 18px;
+    margin-bottom: 20px;
+  }
+
+  .app-header h1 {
+    font-size: 1.65rem;
+  }
+
+  .app-main {
+    border-radius: 9px;
+  }
+
+  /*
+   * Allow the table to scroll horizontally
+   * instead of crushing columns on mobile.
+   */
+  .app-main {
+    overflow-x: auto;
+  }
+
+  .roster-table {
+    min-width: 650px;
+    font-size: 0.85rem;
+  }
+
+  .field-row {
+    grid-template-columns: 1fr;
+  }
+
+  .panel {
+    width: 100%;
+    padding: 22px 18px;
+  }
+
+  .confirm-card {
+    padding: 22px;
+  }
+}
+
+@media (max-width: 420px) {
+  .panel__actions,
+  .confirm-card__actions {
+    flex-direction: column-reverse;
+  }
+
+  .panel__actions .button,
+  .confirm-card__actions .button {
+    width: 100%;
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
